@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alice\\Documents\\NetBeansProjects\\minesweeper\\src\\main\\java\\com\\mycompany\\minesweeper\\transparent-bomb.gif")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(".\\src\\main\\java\\com\\mycompany\\minesweeper\\transparent-bomb.gif")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
