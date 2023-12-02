@@ -80,10 +80,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        JFrame window =  new WindowMaker();
+        WindowMaker window =  new WindowMaker();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
