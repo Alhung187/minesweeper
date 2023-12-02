@@ -80,6 +80,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         WindowMaker window =  new WindowMaker();
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -113,7 +114,10 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+               JFrame mainMenu = new JFrame();
+               mainMenu = new Menu();
+               mainMenu.setLocationRelativeTo(null)
+               mainMenu.setVisible(true);
             }
         });
     }
