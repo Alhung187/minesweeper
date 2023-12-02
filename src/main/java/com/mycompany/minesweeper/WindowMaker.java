@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 import javax.swing.*;
 /**
@@ -50,6 +51,15 @@ public void setupLayout() {
     ActionListener buttonListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            //Started the process of checking for a right mouse click
+            //i wasn't sure how to get the button location as an input though
+            if(e.getSource() instanceof MouseEvent){ 
+                MouseEvent interaction = (MouseEvent) e.getSource();
+                if(SwingUtilities.isRightMouseButton(interaction)){
+                    rightClickButton();
+                }
+            }
             // This is where you define what happens when a button is clicked 
             //(preferabbly we wont code everything here we can call a class or something to run an algorith)
             JButton clickedButton = (JButton) e.getSource();
@@ -111,6 +121,11 @@ private void distributeBombs() {
         } while (bombs[position]); // make  qZq sure no bomb is placed twice at the same position
         bombs[position] = true;
     }
+}
+//Method to place a flag
+//Not sure if there should be an input or not...
+private void rightClickButton(){
+
 }
 
 
