@@ -79,37 +79,53 @@ public void setupLayout() {
         }
     };
     //**************************************************************************
-    
+
     ActionListener buttonListener = new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        JButton clickedButton = (JButton) e.getSource();
-        int buttonIndex = buttonPanel.getComponentZOrder(clickedButton);
-  
-            
-        if (bombs[buttonIndex]) {
-            // Set the bomb icon when a bomb is clicked
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton clickedButton = (JButton) e.getSource();
+            int buttonIndex = buttonPanel.getComponentZOrder(clickedButton);
             System.out.println(buttonIndex);
-            ImageIcon bombIcon = new ImageIcon("bomb.gif"); // Load the bomb icon
-            clickedButton.setIcon(bombIcon); // Set the bomb icon on the button
-            JOptionPane.showMessageDialog(contentPane, "Boom! Game Over.");
-            
-        } else {
-            // Handle non-bomb button click
-            
-            int numbombs = scan.numberOfBombs(bombs, buttonIndex);
-            String numberofbombs = numbombs+"";
-            
-            if(numbombs != 0){
-                clickedButton.setText(numberofbombs);
+            if (bombs[buttonIndex]) {
+                // Set the bomb icon when a bomb is clicked
+                ImageIcon bombIcon = new ImageIcon("bomb.gif"); // Load the bomb icon
+                clickedButton.setIcon(bombIcon); // Set the bomb icon on the button
+                JOptionPane.showMessageDialog(contentPane, "Boom! Game Over.");
+
+            } else {
+                // Handle non-bomb button click
+
+                int numbombs = scan.numberOfBombs(bombs, buttonIndex);
+                String numberofbombs = numbombs+"";
+
+
+                ArrayList<Integer> clearedNeighbors = new ArrayList<Integer>();
+
+                if(numbombs != 0){
+                    clickedButton.setText(numberofbombs);
+                }
+                else{
+                    clearedNeighbors = scan.getClearedNeighbors(bombs, buttonIndex);
+                }
+
+                clickedButton.setEnabled(false);
+                clickedButton.setBackground(Color.WHITE);
+
+                Iterator<Integer> iterator = clearedNeighbors.iterator();
+                while (iterator.hasNext()) {
+                    Integer currentIndex = iterator.next();
+                    JButton button = buttonArray[currentIndex];
+                    int squareBombs = scan.numberOfBombs(bombs, currentIndex);
+                    if(squareBombs != 0){
+                        button.setText(squareBombs + "");
+                    }
+                    button.setEnabled(false);
+                    button.setBackground(Color.WHITE);
+
+                }
             }
-            
-            clickedButton.setEnabled(false);
-            clickedButton.setBackground(Color.WHITE);
         }
-    }
-};
+    };
 
 
    
