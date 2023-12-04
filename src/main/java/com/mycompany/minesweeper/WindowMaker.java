@@ -13,7 +13,9 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.ArrayList;
 import javax.swing.*;
 /**
  *
@@ -21,6 +23,8 @@ import javax.swing.*;
  */
 public class WindowMaker extends JFrame
 {
+
+    static JButton[] buttonArray = new JButton[225];
     private boolean[] bombs = new boolean[324]; // Array to store bomb information
 
     public WindowMaker()
@@ -65,12 +69,31 @@ public class WindowMaker extends JFrame
                     int numbombs = scan.numberOfBombs(bombs, buttonIndex);
                     String numberofbombs = numbombs+"";
 
+
+                    ArrayList<Integer> clearedNeighbors = new ArrayList<Integer>();
+
                     if(numbombs != 0){
                         clickedButton.setText(numberofbombs);
+                    }
+                    else{
+                        clearedNeighbors = scan.getClearedNeighbors(bombs, buttonIndex);
                     }
 
                     clickedButton.setEnabled(false);
                     clickedButton.setBackground(Color.WHITE);
+
+                    Iterator<Integer> iterator = clearedNeighbors.iterator();
+                    while (iterator.hasNext()) {
+                        Integer currentIndex = iterator.next();
+                        JButton button = buttonArray[currentIndex];
+                        int squareBombs = scan.numberOfBombs(bombs, currentIndex);
+                        if(squareBombs != 0){
+                            button.setText(squareBombs + "");
+                        }
+                        button.setEnabled(false);
+                        button.setBackground(Color.WHITE);
+
+                    }
                 }
             }
         };
@@ -98,6 +121,7 @@ public class WindowMaker extends JFrame
             button.addActionListener(buttonListener);
 
             buttonPanel.add(button);
+            buttonArray[i] = button;
         }
 
         FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER);
