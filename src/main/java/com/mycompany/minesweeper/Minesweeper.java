@@ -6,12 +6,13 @@ package com.mycompany.minesweeper;
 
 /**
  *
- * @author hamadkhan
+ * @author Valiant
  */
-public class Minesweeper {
+public class MineSweeper {
 
     public static void main(String[] args) {
-         WindowMaker window =  new WindowMaker();
-         window.setVisible(true);
+        WindowMaker window =  new WindowMaker();
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
     }
 }
