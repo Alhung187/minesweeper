@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.Random;
 import javax.swing.*;
 /**
@@ -50,6 +51,15 @@ public void setupLayout() {
     ActionListener buttonListener = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
+
+            //Started the process of checking for a right mouse click
+            //i wasn't sure how to get the button location as an input though
+            if(e.getSource() instanceof MouseEvent){ 
+                MouseEvent interaction = (MouseEvent) e.getSource();
+                if(SwingUtilities.isRightMouseButton(interaction)){
+                    rightClickButton();
+                }
+            }
         JButton clickedButton = (JButton) e.getSource();
         int buttonIndex = buttonPanel.getComponentZOrder(clickedButton);
 
@@ -69,13 +79,10 @@ public void setupLayout() {
             if(numbombs != 0){
                 clickedButton.setText(numberofbombs);
             }
-            
-            clickedButton.setEnabled(false);
-            clickedButton.setBackground(Color.WHITE);
-        }
-    }
-};
 
+            
+        }
+    };
 
    
     // loop adds all the buttons to the grid
@@ -120,5 +127,15 @@ private void distributeBombs() {
         bombs[position] = true;
     }
 }
+//Method to place a flag
+//Not sure if there should be an input or not...
+private void rightClickButton(){
 
+}
+
+
+
+
+    
+    
 }
