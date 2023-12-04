@@ -11,8 +11,7 @@ package com.mycompany.minesweeper;
 public class Minesweeper {
 
     public static void main(String[] args) {
-         Menu menu = new Menu();
-         menu.setLocationRelativeTo(null);
-         menu.setVisible(true);
+         WindowMaker window =  new WindowMaker();
+         window.setVisible(true);
     }
 }
