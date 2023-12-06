@@ -93,6 +93,7 @@ public class WindowMaker extends JFrame {
                     timer.stop(); // Stop the timer as the game is over
                     ImageIcon bombIcon = new ImageIcon("bomb.gif");
                     clickedButton.setIcon(bombIcon);
+                    revealAllBombs(); // Reveal all bombs
                     JOptionPane.showMessageDialog(contentPane, "Boom! Game Over.");
                 } else {
                     int numbombs = scan.numberOfBombs(bombs, buttonIndex);
